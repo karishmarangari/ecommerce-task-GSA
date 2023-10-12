@@ -1,0 +1,170 @@
+html {
+    scroll-behavior: smooth;
+  
+  }
+  
+  /* navbar */
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  
+  .navbar-inverse {
+    background-color: #c96b6b;
+    border: none;
+    padding: 10px 55px;
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+  }
+  
+  .nav-search {
+    margin: 10px;
+  }
+  
+  .nav-search-space {
+    width: 200px;
+    border-radius: 20px;
+    height: 30px;
+    border: 1px gray;
+  }
+  
+  .nav-search-icon {
+    border: none;
+    background-color: #c96b6b;
+  }
+  
+  .nav-search-space::placeholder {
+    padding-left: 10px;
+  }
+  
+  .navbar-inverse .navbar-nav>.active>a,
+  .navbar-inverse .navbar-nav>.active>a:focus,
+  .navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: #eee;
+  }
+  
+  .navbar-inverse .navbar-nav>li>a {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .navbar-inverse .navbar-nav>.active>a,
+  .navbar-inverse .navbar-nav>.active>a:focus,
+  .navbar-inverse .navbar-nav>.active>a:hover {
+    color: black;
+  
+  }
+  
+  .navbar-inverse .navbar-nav>li>a:focus,
+  .navbar-inverse .navbar-nav>li>a:hover {
+    color:black;
+    border-radius: 3px;
+    background-color: rgb(170, 206, 236);
+  
+  }
+  
+  .navbar-inverse .navbar-brand {
+    color: #e62e00;
+    font-size: 40px;
+    
+  }
+  
+  .navbar-inverse .navbar-brand:focus,
+  .navbar-inverse .navbar-brand:hover {
+    color: #004d4d;
+  }
+  
+  .navbar-nav>li:hover>.dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: block;
+  }
+  
+  .navbar-collapse {
+     padding-right: 0px;
+     padding-left: 0px;
+  }
+  
+  
+  /* ---------------------------Product----------------------------- */
+  
+  .image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  
+  .panel-body:hover .product-btn {
+    opacity: 1;
+  }
+  
+  .glyphicon-star {
+    font-size: 15px;
+    color: #f2a02c;
+  }
+  
+  .product-heading {
+    text-align: center;
+    margin: 30px;
+  }
+  
+  .product {
+    /* background-color: white; */
+    padding: 50px 80px 50px 80px;
+  }
+  
+  .panel-body {
+    /* padding: 0px; */
+    border-radius: 10px;
+  }
+  
+  .row-box {
+    margin-right: 8px;
+  }
+   .product-box{
+    box-shadow: 1px 1px 3px 2px #0000001f;
+    padding:30px;
+    text-align: center;
+   }
+  
+  
+  
+  
+  /*-----------------jumbotron--------------------*/
+  .contact-back {
+    background: url("/static/images/home.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-color: black; */
+    height: 500px;
+  }
+  
+  .overlay {
+    background: #00000091;
+    height: 500px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .contact-text h2 {
+    position: absolute;
+    top: 40%;
+    left: 33%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 2;
+    color: white;
+    font-size: 40px;
+    animation: animated-text 2s infinite;
+  }
+  
+ 
+  
+  

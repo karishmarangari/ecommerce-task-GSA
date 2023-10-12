@@ -1,0 +1,87 @@
+{%extends "Indexpage.html"%}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href='{% static "css/pdetail.css" %}' type="text/css">
+</head>
+
+<body>
+
+    <form method="post" action="/ViewCart">
+        {%csrf_token%}
+        <div class="row row-product">
+            <!-----input for show product id in mycart-->
+            <input type="hidden" name="productid" value="{{id.id}}" />
+            <div class="col-sm-6 product-image">
+                <div class="img-round">
+                    <center><img src="{{id.image.url}}" style="height:400px; width:400px;"></center>
+                </div>
+            </div>
+            <div class="col-sm-6 product-info">
+                <div class="row">
+                    <div class="col-sm-12 info-name">
+                        <h2><b>{{id.p_name}}</h2></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 info-description">
+                        {{id.description}}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12 info-price">
+                        <b><span>&#8377;{{discount}} </span></b>
+                        <span style="color:grey; padding:2px;">MRP</span>
+                        <span class="actual-price" style="color:grey">&#8377;{{id.price}}</span>
+                        <b><span style="color:rgb(145, 215, 41);">( 40% off )</span></b>
+                        <p class="price-taxes"><b>Inclusive all taxes</b></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 info-size">
+                        <h4> Select Size </h4>
+                        <button type="button" value="one size" class="btn-size"><b>Free size</b></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 info-size">
+                        <h4> Select quantity </h4>
+                        <select name="qty" class="quantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 info-cart">
+                        <a href="/showCart/{{id.id}}">
+                            <button type="submit" class="btn btn-cart"> Add to <span class="glyphicon glyphicon-shopping-cart"></span> </button>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 info-buy">
+                        <a href="#">
+                            <button type="button" class="btn btn-buy"> Buy now </button>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+              
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+
+{%endblock%}

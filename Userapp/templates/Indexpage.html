@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Homepage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!---Homepage css style--->
+  <link rel="stylesheet" href='{% static "css/index.css" %}' type="text/css">
+  <!-- CSS for slider -->
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <style>
+    /*--------------Media query--------------*/
+    @media (min-width: 324px) {
+      .navbar-collapse.collapse {
+        display: block !important;
+        height: auto !important;
+        padding-bottom: 0;
+        overflow: visible !important;
+      }
+
+      .container-fluid>.navbar-collapse,
+      .container-fluid>.navbar-header,
+      .container>.navbar-collapse,
+      .container>.navbar-header {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .navbar-right {
+        float: left !important;
+        margin-right: -15px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .navbar-right {
+        float: left !important;
+        margin-left: 10px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .navbar-nav {
+        float: left;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        
+        <a class=" navbar-brand" href="#">Ecommerce</a>
+      
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Profile</a></li>
+          <li><a href="/showCart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+         
+        </ul>
+        <ul class="nav navbar-nav navbar-middle">
+          <li class="nav-search">
+            <form method="post" action="/search">
+              {% csrf_token %}
+              <input type="text" placeholder="Search.." name="query" class="nav-search-space">
+              <button type="submit" class="nav-search-icon"><i class="fa fa-search"></i></button>
+            </form>
+          </li>
+        </ul>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {%block content%}
+  <div class="contact-back">
+    <div class="contact-text">
+      
+    </div>
+    <div class="overlay"></div>
+  </div>
+
+
+  <div class="product">
+    <h1 class="product-heading" > Our Products </h1>
+    <div class="row">
+      {%for items in item%}
+      <div class="col-sm-4 col-product" style="padding-top:70px;">
+        <div class="product-box">
+          <a href="/ViewDetails/{{items.id}}/">
+            <img src="{{items.image.url}}" class="img-responsive" style="width:300px; height:200px;" alt="Image">
+          </a>
+          <h3 class="footer-name" ><b>{{items.p_name}}</h3></b>
+          <p > Rs: {{items.price}}</p>
+          <div class="row">
+            <div class="col-sm-12">
+              <a href="/ViewProduct/{{items.id}}"><button type="button" class="btn btn-warning">View
+                  details</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {%endfor%}
+    </div>
+  </div>
+
+
+
+  {%endblock%}
+
+
+
+</body>
+
+</html>

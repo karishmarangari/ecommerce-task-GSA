@@ -1,0 +1,139 @@
+{%extends "Indexpage.html"%}
+
+{%block content%}
+{% load mathfilters %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href='{% static "css/viewcart.css" %}' type="text/css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+
+                {%for item in items%}
+
+                <div class="row single-prod">
+                    <div class="col-sm-4">
+                        <img src="{{item.product.image.url}}" class="img-responsive" style="width:150px; height:150px;"
+                            alt="Image" />
+                    </div>
+                    <form method="post" id="cartdlt{{item.product.id}}">
+                        <div class="col-sm-7">
+
+                            {%csrf_token%}
+                            <h3>{{item.product.p_name}}</h3>
+                            <p>{{item.product.description}}</p>
+
+                            <b><span>&#8377;{{item.product.price|mul:40|intdiv:100|sub:item.product.price|mul:-1|mul:item.qty}}</span></b>
+                            <span style="color:grey; padding:2px;">MRP</span>
+                            <span class="actual-price" style="color:grey">&#8377;{{item.product.price}}</span>
+                            <b><span style="color:rgb(145, 215, 41);">( 40% off )</span></b>
+                            <div class="quantity">
+                                <button type="submit" class="btn-dec" onclick="decrement('qty{{item.product.id}}')"
+                                    value="update" name="action"> - </button>
+
+                                <input type="text" value="{{item.qty}}" name="qty" id="qty{{item.product.id}}"
+                                    size="1" />
+
+                                <button type="submit" class="btn-inc" onclick="increment('qty{{item.product.id}}');"
+                                    value="update" name="action"> + </button>
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-1">
+                            <div>
+                                <input type="hidden" name="productid" value="{{item.product.id}}" />
+                                <button type="button" class="btn-trash"
+                                    onclick="getconfirm('cartdlt{{item.product.id}}')" name="action" value="remove">
+                                    <i class='glyphicon glyphicon-trash' style="margin-top:15px;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                {%endfor%}
+            </div>
+
+            <div class="col-sm-4 prod-cal">
+                <h3>Product Details</h3>
+                <hr>
+                <div>
+                    <div class="row">
+                        <div class="col-sm-12 col-total">
+                            <span>Total Price ({{count}} items)</span>
+                            <span style="float:right;">&#8377;{{total}} </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-total">
+                            <span>Discount on MRP </span>
+                            <span style="float:right;color:rgb(13, 178, 13);">&#8377;{{request.session.discount}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-total">
+                            <span>Delivery Charges </span>
+                            <span style="float:right;color:rgb(13, 178, 13);"> Free delivery </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12 col-final"><b>
+                                <span style="font-size:18px;"> Total Amount </span>
+                                <span style="float:right;color:red;font-size:18px;">&#8377;{{request.session.discount}}
+                                </span>
+                        </div></b>
+                    </div>
+                    <hr>
+                </div>
+                <a href="#" class="btn btn-primary btn-lg" style="width:100%;"> Make Payment </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function getconfirm(dltid) {
+            result = confirm("Are you sure you want to delete(y/n)?");
+            if (result) {
+                cartdlt = document.getElementById(dltid);
+                cartdlt.action = "/removeItem"
+                cartdlt.submit();
+            }
+        }
+
+
+        function increment(incid) {
+            inc = document.getElementById(incid);
+            if (inc.value < 10) {
+                inc.value = parseInt(inc.value) + 1;
+            }
+        }
+
+        function decrement(decid) {
+            dec = document.getElementById(decid);
+            if (dec.value > 1) {
+                dec.value = parseInt(dec.value) - 1;
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+{%endblock%}

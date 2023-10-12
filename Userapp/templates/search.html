@@ -1,0 +1,65 @@
+{% extends "Indexpage.html" %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search</title>
+  <style>
+    .Search{
+      padding:50px 80px;
+      background-color: #E0E0E0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="Search">
+  {% if searchreci|length < 1 %} <p>No Search results</p>
+  <p>Your search query: <b>{{query}}</b> did not match any documents....</p>
+  <p>Suggestions:</p>
+  <ul>
+    <li>Make sure that all words are spelled correctly.</li>
+    <li>Try different keywords.</li>
+    <li>Try more general keywords.</li>
+    <li>Try fewer keywords.</li>
+  </ul>
+    {% else %}
+    
+    <div class="product-search">
+      <h1 class="product-heading"><b> Our Menu </b></h1>
+      <div class="row">
+        {%for product in searchreci%}
+        <div class="col-sm-3">
+          <div class="panel panel-primary">
+            <div class="panel-body">
+              <a href="/ViewDetails/{{product.id}}">
+                <center><img src="{{product.image.url}}" class="img-responsive" style="width:200px; height:200px;"
+                    alt="Image">
+                </center>
+              </a>
+            </div>
+            <div class="panel-body panel-body-back">
+
+            </div>
+            <div class="panel-footer">
+              <center>
+                <p class="footer-name"><b>{{product.p_name}}</p></b>
+                <a href="/ViewProduct/{{product.id}}"><button type="submit" class="btn btn-warning">
+                    View details</button></a>
+              </center>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+    {%endif%}
+  </div>
+</body>
+
+</html>
+{% endblock %}
