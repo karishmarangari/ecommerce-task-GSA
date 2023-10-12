@@ -68,7 +68,7 @@
     padding: 50px;
 }
 
-.details {
+.details{
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     background-color: white;
     color: rgb(148, 144, 144);
@@ -76,7 +76,7 @@
     border: none;
 }
 
-.quantity {
+.quantity{
     width: 15%;
     padding: 7px;
     border-radius: 15px;
